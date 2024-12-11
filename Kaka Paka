@@ -1,0 +1,33 @@
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class TestGroupStream {
+    public static void main(String[] args) {
+try (Scanner sc = new Scanner(System.in)) {
+            System.out.println("Введите кол-во элементов массива.");
+            int N = sc.nextInt();
+            int[] array = new int[N];
+            System.out.println("Вводите эелменты массива.");
+            for (int i = 0; i < N; i++) {
+                array[i] = sc.nextInt();
+            }
+            Map<Integer, Integer> map = new HashMap<>();
+            for (int element : array) {
+                map.put(element, map.getOrDefault(element, 0) + 1);
+            }
+            List<Integer> list = new ArrayList<>();
+            for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+                if (entry.getValue() <= 2) {
+                    for (int i = 0; i < entry.getValue(); i++)
+                        list.add(entry.getKey());
+                }
+            }
+            System.out.println("Массив после удаления чисел встречающихся более 2 раз.");
+            System.out.println(list);
+        } catch (Exception e) {
+            System.out.println("Something went wrong");
+        }
+
+
+    }
+}
